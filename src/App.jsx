@@ -15,6 +15,8 @@ export default function App() {
     "public": true
   }
   const [formData, setFormData] = useState(initialData)
+  const [message, setMessage] = useState({})
+
 
   function handleFormData(e) {
     // console.log(e);
@@ -27,14 +29,15 @@ export default function App() {
     e.preventDefault()
     console.log(formData)
     axios.post(endpoint, formData)
-      .then(res => console.log(res))
-      .catch(err => console.log(err))
+      .then(res => setMessage({ text: `L'invio dei dati è andato a buon fine! Status: ${res.request.status}`, type: "response" }))
+      .catch(err => setMessage({ text: `L'invio dei dati non è andato a buon fine. Status: ${err.status}`, type: "error" }))
+    setFormData(initialData)
   }
 
   return (
     <>
       <Header />
-      <Main handleFormData={handleFormData} formData={formData} handleSubmit={handleSubmit} />
+      <Main handleFormData={handleFormData} formData={formData} handleSubmit={handleSubmit} message={message} />
     </>
   )
 }
