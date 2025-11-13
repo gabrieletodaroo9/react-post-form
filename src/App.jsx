@@ -26,6 +26,9 @@ export default function App() {
   function handleSubmit(e) {
     e.preventDefault()
     console.log(formData)
+    axios.post(endpoint, formData)
+      .then(res => console.log(res))
+      .catch(err => console.log(err))
   }
 
   return (
