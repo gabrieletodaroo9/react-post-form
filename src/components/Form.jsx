@@ -1,7 +1,7 @@
 
-export default function Form({ handleFormData, formData }) {
+export default function Form({ handleFormData, formData, handleSubmit }) {
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
             <div className="mb-3">
                 <label htmlFor="authorField" className="form-label">Author</label>
                 <input type="text" name="author" className="form-control" id="authorField" placeholder="Inserisci un autore..." value={formData.author} onChange={handleFormData} />
