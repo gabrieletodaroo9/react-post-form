@@ -10,15 +10,26 @@ export default function App() {
     "author": "",
     "title": "",
     "body": "",
-    "public": ""
+    "public": true
+  }
+  const [formData, setFormData] = useState(initialData)
+
+  function handleFormData(e) {
+    // console.log(e);
+    const { name, value, type, checked } = e.target
+
+    const valueEdited = type === "checkbox" ? checked : value
+
+    setFormData({ ...formData, [name]: valueEdited })
+    console.log(formData);
+
   }
 
-  const [formData, setFormData] = useState(initialData)
 
   return (
     <>
       <Header />
-      <Main />
+      <Main handleFormData={handleFormData} formData={formData} />
     </>
   )
 }
